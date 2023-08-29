@@ -5,46 +5,36 @@ using UnityEngine;
 
 public class SwitchMovementType : MonoBehaviour
 {
-
-    RaycastHit2D left, right;
-    public float distanceLeft, distanceRight;
-    public LayerMask interactive;
-    public float yfix;
+    public float Xdis,Ydis;
     public GameObject player;
-    public float distanceX;
-    public Vector2 transfo, Rright;
+    public float Xdiff,Ydiff;
     void Start()
     {
-        distanceRight = Static.EnemyRayDis;
-        distanceLeft = Static.EnemyRayDis;
-        yfix = 0.5f;
+        Xdis = Static.EnemyLookDis;
+        Ydis = Static.EnemyLookUpDis;
         player = Static.player;
-        Rright = new Vector2(transform.right.x, transform.right.y);
-        
-    }
+     }
 
 
     void Update()
     {
-        transfo = new Vector2(transform.position.x, transform.position.y);
-        rayAction();
-        distanceX = transform.position.x - player.transform.position.x;
-        transform.position = transform.position - transform.right * (distanceX) * Time.deltaTime;
-        turntoplayer();
+        
+        Xdiff = transform.position.x - player.transform.position.x;
+        Ydiff =  player.transform.position.y - transform.position.y;
+        
     }
-    void rayAction()
+    private void FixedUpdate()
     {
-        right = Physics2D.Raycast(transfo - Vector2.down * yfix, Vector2.right, distanceRight, interactive);
-        if (right.collider != null) {  Debug.Log(right.collider); } else if (left.collider != null) { Debug.Log(left.collider); }
-        //if (right.collider.gameObject != null) { if (right.collider.gameObject == player) { Debug.Log("debug hi player"); } }
-        Debug.DrawLine(transfo + Vector2.down * yfix, transfo + (Rright * distanceLeft) + Vector2.down * yfix);
-        left = Physics2D.Raycast(transfo - Vector2.down * yfix, Vector2.left, distanceLeft, interactive);
-        //if (left.collider.gameObject != null) { if (right.collider.gameObject == player) { Debug.Log("debug hi player"); } }
-        Debug.DrawLine(transfo + Vector2.down * yfix, transfo - (Rright * distanceLeft) + Vector2.down * yfix);
+        if (Mathf.Abs(Xdiff) < Xdis & Mathf.Abs(Ydiff) < Ydis) { playerseen(); }
+    }
+    void playerseen()
+    {
+        transform.position = transform.position - transform.right * (Xdiff / 5) * Time.deltaTime * (Static.speed / 5);
+        turntoplayer();
     }
     void turntoplayer()
     {
-        if (distanceX < -1) { transform.localScale = new Vector3(-1, 1, 1); }
-        if (distanceX > 1) { transform.localScale = new Vector3(1, 1, 1); }
+        if (Xdiff < -1) { transform.localScale = (new Vector3(-1, 1, 1)); }
+        if (Xdiff > 1) { transform.localScale = new Vector3(1, 1, 1); }
     }
 }

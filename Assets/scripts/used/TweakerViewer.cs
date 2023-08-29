@@ -8,7 +8,7 @@ public class TweakerViewer : MonoBehaviour
     public GameObject play, ca, de, re, bu, busp;
     public Rigidbody2D PlayRg;
     public bool CanIShoot, CanISeeLine, LookingRight;
-    public float movementSpeed, MaxVe, CoyoteB, JumpB, JumpS, BulDis;
+    public float movementSpeed, MaxVe, CoyoteB, JumpB, JumpS, BulDis, EnemyLookDis, EnemyLookUpDis;
     public int bulletCount;
 
     private void Start()
@@ -27,7 +27,8 @@ public class TweakerViewer : MonoBehaviour
         bu = Static.bullet;
         busp = Static.bulletspawn;
         BulDis = Static.BulletDis;
-        
+        EnemyLookDis = Static.EnemyLookDis;
+        EnemyLookUpDis = Static.EnemyLookUpDis;
     }
     private void Update()
     {

@@ -12,7 +12,7 @@ public class Static : MonoBehaviour
     public static float speed, MaxVelo, CoyoteBas, JumpBuff, JumpStr, FallMult, BulletDis;
     public static int bulletCount = 0;
 
-    public static float EnemyRayDis;
+    public static float EnemyLookDis, EnemyLookUpDis;
     private void Update()
     {
         Static.playerVec = player.transform.position;

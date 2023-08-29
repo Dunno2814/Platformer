@@ -26,7 +26,8 @@ public class SpeakToStatic : MonoBehaviour
         if (WhichOb == 105) { Static.JumpStr = Value; }
         if (WhichOb == 106) { Static.FallMult = Value; }
         if (WhichOb == 109) { Static.BulletDis = Value; }
-        if (WhichOb == 120) { Static.EnemyRayDis = Value; }
+        if (WhichOb == 120) { Static.EnemyLookDis = Value; }
+        if (WhichOb == 121 ) { Static.EnemyLookUpDis = Value; }
         if (WhichOb == 201) { Static.LineView = BoolValue; }
     }
     
