@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,9 +14,9 @@ public class SwitchMovementType : MonoBehaviour
     void Start()
     {
         health = 5;
-        enemyspeed = 5f;
-        Xdis = 15f;
-        Ydis = 2f;
+        enemyspeed = 9f;
+        Xdis = 25f;
+        Ydis = 5f;
         player = Static.player;
      }
 
@@ -33,7 +34,7 @@ public class SwitchMovementType : MonoBehaviour
     }
     void playerseen()
     {
-        transform.position = transform.position - transform.right * (Xdiff / 5) * Time.deltaTime * (enemyspeed);
+        transform.position = transform.position - transform.right * Time.deltaTime * (enemyspeed);
         turntoplayer();
     }
     void turntoplayer()
