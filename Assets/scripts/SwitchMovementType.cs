@@ -8,10 +8,12 @@ public class SwitchMovementType : MonoBehaviour
     public float Xdis,Ydis;
     public GameObject player;
     public float Xdiff,Ydiff;
+    public float enemyspeed;
     void Start()
     {
-        Xdis = Static.EnemyLookDis;
-        Ydis = Static.EnemyLookUpDis;
+        enemyspeed = 50f;
+        Xdis = 15f;
+        Ydis = 2f;
         player = Static.player;
      }
 
@@ -29,7 +31,7 @@ public class SwitchMovementType : MonoBehaviour
     }
     void playerseen()
     {
-        transform.position = transform.position - transform.right * (Xdiff / 5) * Time.deltaTime * (Static.speed / 5);
+        transform.position = transform.position - transform.right * (Xdiff / 5) * Time.deltaTime * (enemyspeed);
         turntoplayer();
     }
     void turntoplayer()

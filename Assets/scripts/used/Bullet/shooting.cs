@@ -20,6 +20,6 @@ public class shooting : MonoBehaviour
     void Update()
     {
         
-        if(Input.GetMouseButtonDown(0) & Static.canShoot) { GameObject.Instantiate(bulletprefab, spawn.transform.position, new Quaternion (0,0,0,0)); Static.bulletCount = Static.bulletCount + 1;  }
+        if(Input.GetMouseButtonDown(0) & Static.canShoot) { GameObject.Instantiate(bulletprefab, spawn.transform.position, new Quaternion (0,0,0,0));  }
     }
 }

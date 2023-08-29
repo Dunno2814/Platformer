@@ -6,30 +6,40 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    float jumpforce;
+    // <-->
     Rigidbody2D Rg;
+    public float speed, maxVelo;
+    // gravity
+    float jumpforce;
     GameObject cam;
     Camera camer;
-    CircleCollider2D boxer;
+    BoxCollider2D boxer;
     public LayerMask mask;
     float coyoteBase, JumpBase;
     public float coyoteTimer, JumpBufferTimer;
-    public float Fallspeed;
+    public float Fallspeed, Fallmult;
     public float g;
     private void Start()
     {
-        Fallspeed = Static.FallMult;
-        jumpforce = Static.JumpStr;
-        coyoteBase = Static.CoyoteBas;
-        JumpBase = Static.JumpBuff;
+        Fallmult = 2.5f;
+        jumpforce = 9f;
+        coyoteBase = 0.4f;
+        JumpBase = 0.15f;
         Rg = gameObject.GetComponent<Rigidbody2D>();
         cam = Static.cam;
         camer = cam.GetComponent<Camera>();
-        boxer = gameObject.GetComponent<CircleCollider2D>();
+        boxer = gameObject.GetComponent<BoxCollider2D>();
+        speed = 50f;
+        maxVelo = 40f;
+        Static.LookingRight = true;
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)) { Fallspeed = Static.FallMult - 1.5f; } else { Fallspeed = Static.FallMult; }
+        Rg.AddForce((Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed * Vector2.right), ForceMode2D.Impulse);
+        Rg.velocity = new Vector2(Mathf.Clamp(Rg.velocity.x, -maxVelo, maxVelo), Rg.velocity.y);
+        if (Input.GetAxisRaw("Horizontal") < 0) { transform.localScale = new Vector3(-3f, 3f, 1); Static.LookingRight = false; } else if (Input.GetAxisRaw("Horizontal") > 0) { transform.localScale = new Vector3(3f, 3f, 1); Static.LookingRight = true; }
+        // movement is up, jump is down 
+        if (Input.GetKey(KeyCode.Space)) { Fallspeed = Fallmult - 1.5f; } else { Fallspeed = Fallmult; }
         if (grounded()) { coyoteTimer = coyoteBase; }
         else { coyoteTimer = coyoteTimer - Time.deltaTime; Rg.velocity = new Vector2(Rg.velocity.x, Rg.velocity.y + (Physics2D.gravity.y * (Fallspeed - 1) * Time.deltaTime)); }
 

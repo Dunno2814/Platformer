@@ -13,9 +13,9 @@ public class Ray : MonoBehaviour
     GameObject camObj;
     Camera cam;
     public LayerMask mask;
-    public GameObject HasLine;
+     GameObject HasLine;
     public LineRenderer line;
-    public GameObject desired;
+    GameObject desired;
     public SpriteRenderer Spri;
     void Start()
     {
@@ -49,7 +49,7 @@ public class Ray : MonoBehaviour
         dis = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         dir = ( new Vector2(dis.x, 0f) ).normalized;
         length = new Vector2(dis.x, dis.y).magnitude;
-        hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, Static.BulletDis, mask);
+        hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 15f, mask);
         hitp = new Vector3(hit.point.x, hit.point.y, 0);
     }
     void linedraw(bool v) { 

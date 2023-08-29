@@ -6,7 +6,6 @@ public class SpeakToStatic : MonoBehaviour
 {
     [SerializeField] string Usage;
     public int WhichOb;
-    public float Value;
     public bool BoolValue;
     private void Awake()
     {
@@ -19,16 +18,6 @@ public class SpeakToStatic : MonoBehaviour
         if (WhichOb == 2) { Static.desire = gameObject; }
         if (WhichOb == 5) { Static.respawn = gameObject; }
         if (WhichOb == 6) { Static.bulletspawn = gameObject; }
-        if (WhichOb == 101) { Static.speed = Value; }
-        if (WhichOb == 102) { Static.MaxVelo = Value; }
-        if (WhichOb == 103) { Static.CoyoteBas = Value; }
-        if (WhichOb == 104) { Static.JumpBuff = Value; }
-        if (WhichOb == 105) { Static.JumpStr = Value; }
-        if (WhichOb == 106) { Static.FallMult = Value; }
-        if (WhichOb == 109) { Static.BulletDis = Value; }
-        if (WhichOb == 120) { Static.EnemyLookDis = Value; }
-        if (WhichOb == 121 ) { Static.EnemyLookUpDis = Value; }
-        if (WhichOb == 201) { Static.LineView = BoolValue; }
     }
     
 }
