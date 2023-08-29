@@ -9,9 +9,11 @@ public class SwitchMovementType : MonoBehaviour
     public GameObject player;
     public float Xdiff,Ydiff;
     public float enemyspeed;
+    public int health;
     void Start()
     {
-        enemyspeed = 50f;
+        health = 5;
+        enemyspeed = 5f;
         Xdis = 15f;
         Ydis = 2f;
         player = Static.player;
@@ -23,7 +25,7 @@ public class SwitchMovementType : MonoBehaviour
         
         Xdiff = transform.position.x - player.transform.position.x;
         Ydiff =  player.transform.position.y - transform.position.y;
-        
+        if ( health <= 0) { GameObject.Destroy(gameObject); }
     }
     private void FixedUpdate()
     {
@@ -38,5 +40,10 @@ public class SwitchMovementType : MonoBehaviour
     {
         if (Xdiff < -1) { transform.localScale = (new Vector3(-1, 1, 1)); }
         if (Xdiff > 1) { transform.localScale = new Vector3(1, 1, 1); }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject == Static.player ) { GameObject.Destroy(Static.player); }
+        if (collision.collider.gameObject.tag == "Bullet") { health = health - 1; }
     }
 }
