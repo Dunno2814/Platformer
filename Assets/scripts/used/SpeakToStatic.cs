@@ -18,7 +18,6 @@ public class SpeakToStatic : MonoBehaviour
         if (WhichOb == 2) { Static.desire = gameObject; }
         if (WhichOb == 5) { Static.respawn = gameObject; }
         if (WhichOb == 6) { Static.bulletspawn = gameObject; }
-        if (WhichOb == 7) { Static.arm = gameObject; }
     }
     
 }
