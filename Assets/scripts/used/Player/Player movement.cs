@@ -42,8 +42,8 @@ public class Move : MonoBehaviour
     {
         RawInput = Input.GetAxisRaw("Horizontal");
         if (Input.GetKeyDown(KeyCode.Space)) {spaceClick = true; }
-        if (Input.GetKey(KeyCode.Space)) { SpaceHold = true; }
-        if (Input.GetKeyUp(KeyCode.Space)) { SpaceLift = true; }
+        if (Input.GetKey(KeyCode.Space)) { SpaceHold = true; Animator2d.SetBool("isJump", true); }
+        if (Input.GetKeyUp(KeyCode.Space)) { SpaceLift = true; Animator2d.SetBool("isJump", false); }
 
 
         // movement is up, jump is down 
@@ -54,10 +54,12 @@ public class Move : MonoBehaviour
 
     void FixedUpdate()
     {
+       // Vector2 movement = new Vector2(RawInput,0);
+     //   Rg.velocity = movement * speed;
         Rg.AddForce(( RawInput * Time.deltaTime * speed * Vector2.right), ForceMode2D.Impulse);
         Rg.velocity = new Vector2(Mathf.Clamp(Rg.velocity.x, -maxVelo, maxVelo), Rg.velocity.y);
         if (Mathf.Abs(RawInput) > 0) { Animator2d.SetBool("isWalk", true); } else { Animator2d.SetBool("isWalk", false); }
-        if (RawInput < 0) { transform.localScale = new Vector3(-3f, 3f, 1); Static.LookingRight = false; } else if (RawInput > 0) { transform.localScale = new Vector3(3f, 3f, 1); Static.LookingRight = true; }
+        if (RawInput < 0) { transform.localScale = new Vector3(-3.5f, 3.5f, 1); Static.LookingRight = false; } else if (RawInput > 0) { transform.localScale = new Vector3(3.5f, 3.5f, 1); Static.LookingRight = true; }
 
         if (SpaceHold) { Fallspeed = Fallmult - 1.5f; SpaceHold = false; } else { Fallspeed = Fallmult; }
         if (grounded() || enemy()) { coyoteTimer = coyoteBase; } else { coyoteTimer = coyoteTimer - Time.deltaTime; Rg.velocity = new Vector2(Rg.velocity.x, Rg.velocity.y + (Physics2D.gravity.y * (Fallspeed - 1) * Time.deltaTime)); }
