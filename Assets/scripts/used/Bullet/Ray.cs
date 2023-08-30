@@ -38,15 +38,15 @@ public class Ray : MonoBehaviour
         Static.arm.transform.position = Static.player.transform.position + disPlayer;
         if (Input.GetMouseButton(0))
         {
-            if (Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = ArmAngle; Debug.Log("right"); }
-            if (!Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = NegativeArmAngle; Debug.Log("left"); }
+            if (Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = ArmAngle; }
+            if (!Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = NegativeArmAngle; }
             
             myray();
 
 
-            linedraw(Static.LineView);
+            linedraw(true);
         }
-        else { desired.SetActive(false); Static.canShoot = false; Spri.enabled = false; Static.arm.transform.eulerAngles = Vector3.zero; }
+        
 
     }
 
@@ -55,12 +55,12 @@ public class Ray : MonoBehaviour
 
         
         void myray()
-        {
-            dis = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            dir = (new Vector2(dis.x, 0f)).normalized;
-            length = new Vector2(dis.x, dis.y).magnitude;
-            hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 15f, mask);
-            hitp = new Vector3(hit.point.x, hit.point.y, 0);
+        {    
+        dis = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        dir = dis.normalized;
+        length = new Vector2(dis.x, dis.y).magnitude;
+        hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 20, mask);
+        hitp = new Vector3(hit.point.x, hit.point.y, 0);
         }
         void linedraw(bool v)
         {
