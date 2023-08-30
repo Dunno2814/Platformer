@@ -17,9 +17,10 @@ public class Ray : MonoBehaviour
     public LineRenderer line;
     GameObject desired;
     public SpriteRenderer Spri;
-    public Vector3 ArmAngle, NegativeArmAngle;
+    public Vector3 ArmAngle, NegativeArmAngle, scale;
     Vector3 disPlayer;
     public Animator Animator2d;
+    public int switch1 = 1;
     void Start()
     {
         camObj = Static.cam;
@@ -31,27 +32,31 @@ public class Ray : MonoBehaviour
         ArmAngle = Static.arm.transform.eulerAngles;
         NegativeArmAngle = -1 * Static.arm.transform.eulerAngles;
         disPlayer = Static.arm.transform.position - Static.player.transform.position;
+        scale = Static.arm.transform.localScale;
     }
 
 
     void Update()
     {
         
-        Static.arm.transform.position = Static.player.transform.position + disPlayer;
+        Static.arm.transform.position = Static.player.transform.position +  new Vector3(disPlayer.x * switch1, disPlayer.y, disPlayer.z);
+        Static.arm.transform.localScale = new Vector3(3.25f * switch1, 3.25f, 1);
         if (Input.GetMouseButton(0))
         {
+            
             myray();
             linedraw(true);
             Animator2d.SetBool("isShoot", true);
-            if (Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = ArmAngle; }
-            if (!Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = NegativeArmAngle; }
+            Static.arm.SetActive(true);
+            if (Static.LookingRight ) { Static.arm.transform.eulerAngles = new Vector3(0, 0, 67.63f); switch1 = 1; }
+            if (!Static.LookingRight ) {  Static.arm.transform.eulerAngles = new Vector3(0, 0, -67.63f); switch1 = -1; ; }
             
             
 
 
             
         }
-        else { desired.SetActive(false); Static.canShoot = false; Spri.enabled = false; Static.arm.transform.eulerAngles = Vector3.zero; Animator2d.SetBool("isShoot", false); line.SetPosition(0, new Vector3(0, 0, 0)); line.SetPosition(1, new Vector3(0, 0, 0)); }
+        else { desired.SetActive(false); Static.canShoot = false; Spri.enabled = false; Static.arm.transform.eulerAngles = Vector3.zero + new Vector3(0,0, 27.38f); Animator2d.SetBool("isShoot", false); line.SetPosition(0, new Vector3(0, 0, 0)); line.SetPosition(1, new Vector3(0, 0, 0)); Static.arm.SetActive(false); }
 
 
     }

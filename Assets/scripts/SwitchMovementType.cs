@@ -44,7 +44,7 @@ public class SwitchMovementType : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject == Static.player ) { GameObject.Destroy(Static.player); }
+        if (collision.collider.gameObject == Static.player ) { Debug.Log("player damaged"); }
         if (collision.collider.gameObject.tag == "Bullet") { health = health - 1; }
     }
 }
