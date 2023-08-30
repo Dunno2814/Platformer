@@ -48,8 +48,7 @@ public class Ray : MonoBehaviour
             linedraw(true);
             Animator2d.SetBool("isShoot", true);
             Static.arm.SetActive(true);
-            if (Static.LookingRight ) { Static.arm.transform.eulerAngles = new Vector3(0, 0, 67.63f); switch1 = 1; }
-            if (!Static.LookingRight ) {  Static.arm.transform.eulerAngles = new Vector3(0, 0, -67.63f); switch1 = -1; ; }
+            
 
 
 
@@ -72,7 +71,9 @@ public class Ray : MonoBehaviour
         length = new Vector2(dis.x, dis.y).magnitude;
         hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 20, mask);
         hitp = new Vector3(hit.point.x, hit.point.y, 0);
-        }
+        if (Static.LookingRight) { Static.arm.transform.eulerAngles = new Vector3(0, 0, dir.y *360); switch1 = 1; }
+        if (!Static.LookingRight) { Static.arm.transform.eulerAngles = new Vector3(0, 0, dir.y *-360); switch1 = -1; ; }
+    }
         void linedraw(bool v)
         {
             if (v == true)
