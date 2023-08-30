@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Static : MonoBehaviour
 {
-    public static GameObject player, cam, desire, respawn, bullet, bulletspawn;
+    public static GameObject player, cam, desire, respawn, bullet, bulletspawn, arm;
     public static Rigidbody2D playerRg;
-    public static bool canShoot, LineView, LookingRight;
+    public static bool canShoot, LineView, LookingRight, Jumping;
 
     
 
