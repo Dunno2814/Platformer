@@ -12,9 +12,9 @@ public class aimatplayer : MonoBehaviour
     }
     void Update()
     {
-        dis = transform.position - Static.player.transform.position;
+        dis = Static.player.transform.position - transform.position;
         Debug.Log(dis);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dis.normalized, 10f, PlayerCheck);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dis.normalized, 20f, PlayerCheck);
         Debug.Log(hit.collider);
     }
 }

@@ -6,7 +6,6 @@ public class follow : MonoBehaviour
 {
     public GameObject player;
     Transform Pt;
-    float xMin = 10,yMin;
 
     void Start()
     {
