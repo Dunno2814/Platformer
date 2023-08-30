@@ -17,6 +17,11 @@ public class Ray : MonoBehaviour
     public LineRenderer line;
     GameObject desired;
     public SpriteRenderer Spri;
+<<<<<<< Updated upstream
+=======
+    public Vector3 ArmAngle, NegativeArmAngle;
+    Vector3 disPlayer;
+>>>>>>> Stashed changes
     void Start()
     {
         camObj = Static.cam;
@@ -25,10 +30,24 @@ public class Ray : MonoBehaviour
         line = HasLine.GetComponent<LineRenderer>();
         desired = Static.desire;
         Spri = gameObject.GetComponent<SpriteRenderer>();
+<<<<<<< Updated upstream
     }
     void Update()
     {
         if (Input.GetMouseButton(0)) {
+=======
+        ArmAngle = Static.arm.transform.eulerAngles;
+        NegativeArmAngle = -1 * Static.arm.transform.eulerAngles;
+        disPlayer = Static.arm.transform.position - Static.player.transform.position;
+    }
+    void Update()
+    {
+        
+        if (Input.GetMouseButton(0)) {
+            if (Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = ArmAngle; Debug.Log("right"); }
+            if (!Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = NegativeArmAngle; Debug.Log("left"); }
+            Static.arm.transform.position = Static.player.transform.position + disPlayer;
+>>>>>>> Stashed changes
             myray();
 
 

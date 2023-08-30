@@ -7,6 +7,7 @@ public class TweakerViewer : MonoBehaviour
     public Vector3 Player;
     public GameObject play, ca, de, re, bu, busp;
     public Rigidbody2D PlayRg;
+    public bool right;
 
     private void Start()
     {
@@ -18,5 +19,6 @@ public class TweakerViewer : MonoBehaviour
     }
     private void Update()
     {
+        right = Static.LookingRight;
     }
 }

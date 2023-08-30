@@ -47,7 +47,7 @@ public class Move : MonoBehaviour
 
 
         // movement is up, jump is down 
-
+        Static.Jumping = grounded();
 
     }
 
