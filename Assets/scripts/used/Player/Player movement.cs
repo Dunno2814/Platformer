@@ -27,7 +27,7 @@ public class Move : MonoBehaviour
     public bool spaceClick, SpaceHold, SpaceLift;
     private void Start()
     {
-        jumpforce = 9f;
+        jumpforce = 15f;
         coyoteBase = 0.4f;
         JumpBase = 0.15f;
         Rg = gameObject.GetComponent<Rigidbody2D>();
@@ -35,7 +35,7 @@ public class Move : MonoBehaviour
         camer = cam.GetComponent<Camera>();
         boxer = gameObject.GetComponent<BoxCollider2D>();
         speed = 20f;
-        maxVelo = 23f;
+        maxVelo = 33f;
         Static.LookingRight = true;
     }
     void Update()

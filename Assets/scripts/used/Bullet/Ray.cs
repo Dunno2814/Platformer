@@ -19,6 +19,7 @@ public class Ray : MonoBehaviour
     public SpriteRenderer Spri;
     public Vector3 ArmAngle, NegativeArmAngle;
     Vector3 disPlayer;
+    public Animator Animator2d;
     void Start()
     {
         camObj = Static.cam;
@@ -35,18 +36,23 @@ public class Ray : MonoBehaviour
 
     void Update()
     {
+        
         Static.arm.transform.position = Static.player.transform.position + disPlayer;
         if (Input.GetMouseButton(0))
         {
+            myray();
+            linedraw(true);
+            Animator2d.SetBool("isShoot", true);
             if (Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = ArmAngle; }
             if (!Static.LookingRight & Static.Jumping) { Static.arm.transform.eulerAngles = NegativeArmAngle; }
             
-            myray();
+            
 
 
-            linedraw(true);
+            
         }
-        
+        else { desired.SetActive(false); Static.canShoot = false; Spri.enabled = false; Static.arm.transform.eulerAngles = Vector3.zero; Animator2d.SetBool("isShoot", false); line.SetPosition(0, new Vector3(0, 0, 0)); line.SetPosition(1, new Vector3(0, 0, 0)); }
+
 
     }
 
@@ -55,7 +61,7 @@ public class Ray : MonoBehaviour
 
         
         void myray()
-        {    
+        {
         dis = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         dir = dis.normalized;
         length = new Vector2(dis.x, dis.y).magnitude;
