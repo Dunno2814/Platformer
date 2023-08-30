@@ -40,8 +40,8 @@ public class Ray : MonoBehaviour
     {
         
         Static.arm.transform.position = Static.player.transform.position +  new Vector3(disPlayer.x * switch1, disPlayer.y, disPlayer.z);
-        Static.arm.transform.localScale = new Vector3(3.25f * switch1, 3.25f, 1);
-        if (Input.GetMouseButton(0))
+        Static.arm.transform.localScale = new Vector3(1f * switch1, 1f, 1f);
+        if (Input.GetMouseButton(1) & Static.Jumping)
         {
             
             myray();
@@ -50,11 +50,11 @@ public class Ray : MonoBehaviour
             Static.arm.SetActive(true);
             if (Static.LookingRight ) { Static.arm.transform.eulerAngles = new Vector3(0, 0, 67.63f); switch1 = 1; }
             if (!Static.LookingRight ) {  Static.arm.transform.eulerAngles = new Vector3(0, 0, -67.63f); switch1 = -1; ; }
-            
-            
 
 
-            
+
+
+
         }
         else { desired.SetActive(false); Static.canShoot = false; Spri.enabled = false; Static.arm.transform.eulerAngles = Vector3.zero + new Vector3(0,0, 27.38f); Animator2d.SetBool("isShoot", false); line.SetPosition(0, new Vector3(0, 0, 0)); line.SetPosition(1, new Vector3(0, 0, 0)); Static.arm.SetActive(false); }
 
