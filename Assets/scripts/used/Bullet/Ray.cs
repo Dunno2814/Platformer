@@ -41,7 +41,7 @@ public class Ray : MonoBehaviour
         
         Static.arm.transform.position = Static.player.transform.position +  new Vector3(disPlayer.x * switch1, disPlayer.y, disPlayer.z);
         Static.arm.transform.localScale = new Vector3(1f * switch1, 1f, 1f);
-        if (Input.GetMouseButton(1) & Static.Jumping)
+        if (Input.GetMouseButton(1))
         {
             
             myray();
@@ -69,10 +69,10 @@ public class Ray : MonoBehaviour
         dis = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         dir = dis.normalized;
         length = new Vector2(dis.x, dis.y).magnitude;
-        hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 20, mask);
+        hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), dir, 40,mask);
         hitp = new Vector3(hit.point.x, hit.point.y, 0);
-        if (Static.LookingRight) { Static.arm.transform.eulerAngles = new Vector3(0, 0, dir.y *360); switch1 = 1; }
-        if (!Static.LookingRight) { Static.arm.transform.eulerAngles = new Vector3(0, 0, dir.y *-360); switch1 = -1; ; }
+        if (Static.LookingRight) { Static.arm.transform.eulerAngles = new Vector3(0, 0, 68.2f); switch1 = 1; }
+        if (!Static.LookingRight) { Static.arm.transform.eulerAngles = new Vector3(0, 0, -68.2f); switch1 = -1; ; }
     }
         void linedraw(bool v)
         {

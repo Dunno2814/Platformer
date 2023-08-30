@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         dir = tf - transform.position;
         transform.position = transform.position + (dir * Time.deltaTime * speed);
         timer = timer + Time.deltaTime;
-        if (timer > 4f || transform.position == tf) { Destroy(gameObject); }
+        if (timer > 2f || transform.position == tf) { Destroy(gameObject); }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

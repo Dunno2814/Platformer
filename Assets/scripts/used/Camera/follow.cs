@@ -6,7 +6,7 @@ public class follow : MonoBehaviour
 {
     public GameObject player;
     Transform Pt;
-    float xMin = 0,yMin;
+    float xMin = 10,yMin;
 
     void Start()
     {
@@ -17,6 +17,6 @@ public class follow : MonoBehaviour
     void Update()
     {
         Pt = player.transform;
-        transform.position = new Vector3( Mathf.Clamp(Pt.position.x - 2f,xMin,100f), Mathf.Clamp(Pt.position.y - 5f, yMin, 100f), transform.position.z);
+        
     }
 }
