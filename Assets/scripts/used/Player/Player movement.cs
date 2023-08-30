@@ -27,7 +27,7 @@ public class Move : MonoBehaviour
     public bool spaceClick, SpaceHold, SpaceLift;
     private void Start()
     {
-        jumpforce = 9f;
+        jumpforce = 13f;
         coyoteBase = 0.4f;
         JumpBase = 0.15f;
         Rg = gameObject.GetComponent<Rigidbody2D>();
@@ -54,8 +54,7 @@ public class Move : MonoBehaviour
 
     void FixedUpdate()
     {
-       // Vector2 movement = new Vector2(RawInput,0);
-     //   Rg.velocity = movement * speed;
+       
         Rg.AddForce(( RawInput * Time.deltaTime * speed * Vector2.right), ForceMode2D.Impulse);
         Rg.velocity = new Vector2(Mathf.Clamp(Rg.velocity.x, -maxVelo, maxVelo), Rg.velocity.y);
         if (Mathf.Abs(RawInput) > 0) { Animator2d.SetBool("isWalk", true); } else { Animator2d.SetBool("isWalk", false); }

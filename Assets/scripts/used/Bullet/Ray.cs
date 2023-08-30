@@ -17,6 +17,8 @@ public class Ray : MonoBehaviour
     public LineRenderer line;
     GameObject desired;
     public SpriteRenderer Spri;
+    Vector3 ArmPos, ArmAngle;
+    Vector3 disPlayer;
     void Start()
     {
         camObj = Static.cam;
@@ -25,16 +27,24 @@ public class Ray : MonoBehaviour
         line = HasLine.GetComponent<LineRenderer>();
         desired = Static.desire;
         Spri = gameObject.GetComponent<SpriteRenderer>();
+        ArmAngle = Static.arm.transform.eulerAngles;
+        ArmPos = Static.arm.transform.position;
+        disPlayer = Static.arm.transform.position - Static.player.transform.position;
     }
     void Update()
     {
+        if (Static.LookingRight) { Static.arm.transform.eulerAngles = ArmAngle; } else { Static.arm.transform.eulerAngles = -ArmAngle; }
         if (Input.GetMouseButton(0)) {
+            Static.arm.transform.position = Static.player.transform.position + disPlayer;
+            Static.arm.transform.eulerAngles = ArmAngle;
             myray();
 
 
-            linedraw(Static.LineView);
+            linedraw(true);
         }
-        else { desired.SetActive(false); Static.canShoot = false; Spri.enabled = false; }
+        else { desired.SetActive(false); Static.canShoot = false; Spri.enabled = false; Static.arm.transform.position = Static.player.transform.position + disPlayer + new Vector3(0, 0, 0);
+            Static.arm.transform.eulerAngles = new Vector3(0,0,0);
+        }
 
 
 
